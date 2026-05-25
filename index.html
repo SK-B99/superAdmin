@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ApexHR — Tenant Admin</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>ApexHR — Tenant Admin</h1>
+    </header>
+
+    <div class="main">
+      <!-- How it works -->
+      <div class="card">
+        <div class="card-title">How it works</div>
+        <div class="how-steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-text">
+              <strong>Log in to your ApexHR account</strong> using your email
+              and password.
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-text">
+              <strong>Copy your access token</strong> from the response. Open
+              <code>F12</code> → Network tab → click the login request → look in
+              the Response for <code>accessToken</code>.
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-text">
+              <strong>Paste your ngrok base URL and token</strong> below in the
+              Connection section, then click <strong>Save</strong>.
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-text">
+              <strong>Fetch all tenants</strong> to see a list, or use the
+              Danger Zone to wipe everything. You can also delete individual
+              tenants from the list. These actions are permanent.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Connection -->
+      <div class="card">
+        <div class="card-title">Connection</div>
+        <div class="field">
+          <label>API base URL</label>
+          <input
+            type="text"
+            id="baseUrl"
+            placeholder="https://your-ngrok-url.ngrok-free.app/v1"
+          />
+        </div>
+        <div class="field">
+          <label>Access token</label>
+          <div class="input-row">
+            <input
+              type="password"
+              id="token"
+              placeholder="Paste your access token here"
+            />
+            <button class="btn btn-dark" onclick="saveConn()">Save</button>
+          </div>
+        </div>
+        <div id="conn-toast" class="toast"></div>
+      </div>
+
+      <!-- Tenants -->
+      <div class="card">
+        <div class="card-title">Tenants</div>
+        <div class="actions">
+          <button class="btn btn-dark" onclick="fetchTenants()">
+            Get all tenants
+          </button>
+        </div>
+        <div id="fetch-toast" class="toast"></div>
+        <div id="tenants-list" class="tenants-list"></div>
+      </div>
+
+      <!-- Danger zone -->
+      <div class="card danger-zone" id="danger-card">
+        <div class="card-title">Danger zone</div>
+        <p style="font-size: 13px; color: var(--muted); margin-bottom: 12px">
+          Permanently deletes all tenants, users, departments, leave policies,
+          and refresh tokens. This cannot be undone.
+        </p>
+        <button class="btn btn-danger" onclick="showConfirm()">
+          Delete all tenants
+        </button>
+        <div id="delete-toast" class="toast"></div>
+
+        <div class="confirm-overlay" id="confirm-overlay">
+          <div class="confirm-box">
+            <p>
+              <strong>Are you sure?</strong><br />This will wipe every tenant
+              and all associated data permanently.
+            </p>
+            <div class="confirm-actions">
+              <button class="btn" onclick="hideConfirm()">Cancel</button>
+              <button class="btn btn-danger" onclick="deleteAll()">
+                Yes, delete all
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
