@@ -1,6 +1,6 @@
 # ApexHR — Tenant Admin
 
-A lightweight browser-based admin panel for managing tenants in your [ApexHR](https://github.com/coderaccoon) backend. No build tools, no dependencies — just three files you open in a browser.
+A lightweight browser-based admin panel for managing tenants in ApexHR. No build tools, no dependencies — just three files you open in a browser.
 
 ---
 
