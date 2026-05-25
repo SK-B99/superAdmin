@@ -81,6 +81,4 @@ In the panel:
 
 ---
 
-## Built by
 
-[Code Raccoon](mailto:prospergyinka@coderaccoon.com)
